@@ -7,8 +7,8 @@ Does NOT support multi-controller configurations
 
 Requirements:
 - Dell server with iDRAC ;-)
-- A server with Dell OpenManage Server Administrator (OMSA) installed and running
-- A server with CasperJS installed
+- A server with Dell OpenManage Server Administrator (OMSA) installed and running (http://www.dell.com/support/contents/us/en/19/article/Product-Support/Self-support-Knowledgebase/enterprise-resource-center/Enterprise-Tools/OMSA/)
+- A server with CasperJS installed (http://casperjs.org)
 
 Usage (this example is for linux server):
 
