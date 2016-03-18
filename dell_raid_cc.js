@@ -4,7 +4,6 @@
  *
  *  Supports multiple virtual drives created on a single RAID controller
  *  Does NOT support multi-controller configurations
- *  This is the only way to automate consistency checks for ESXi 5.5+ servers running on Dell hardware, since they don't have omconfig/omreport tools
  *
  *  Requirements:
  *  - Dell server with iDRAC ;-)
@@ -45,7 +44,14 @@
  *
  * Repository: https://github.com/jazzl0ver/dell_raid_cc
  *
+ *
+ * Changelog:
+ *
+ * Version: 1.1 (March 18, 2016)
+ * - added support for local node checking (OMSAHOST and DELLHOST are the same)
  * Version: 1.0 (March 18, 2016)
+ * - 1st publishing
+ *
  *
  * Copyright (c) 2016 jazzl0ver
  *
@@ -71,7 +77,13 @@ var username = system.env.USERNAME;
 var password = system.env.PASSWORD;
 var dellhost = system.env.DELLHOST;
 
-var url = 'https://'+OMSAhost+':'+OMSAport+'/OMSALogin?manageDWS=false';
+var url;
+if (dellhost == OMSAhost) {
+    url = 'https://'+OMSAhost+':'+OMSAport+'/OMSALogin?manageDWS=true';
+}
+else {
+    url = 'https://'+OMSAhost+':'+OMSAport+'/OMSALogin?manageDWS=false';
+}
 
 casper.options.viewportSize = { width: 950, height: 950 };
 
@@ -97,19 +109,32 @@ casper.start(url);
 
 casper.then(function() {
     casper.waitForSelector("frameset", function() {
-        this.page.switchToFrame('managedws');
+        if (dellhost == OMSAhost) {
+            this.page.switchToChildFrame(0);
+        }
+        else {
+            this.page.switchToFrame('managedws');
+        }
     });
 });
 
 // login into OMSA
 casper.then(function() {
     this.waitForSelector("form input[name='user']", function() {
-        this.fillSelectors('form', {
-            'input[name = targetmachine ]' : dellhost,
-            'input[name = user ]' : username,
-            'input[name = password ]' : password,
-            'input[name = ignorecertificate ]' : '1',
-        });
+        if (dellhost == OMSAhost) {
+            this.fillSelectors('form', {
+                'input[name = user ]' : username,
+                'input[name = password ]' : password,
+            });
+        }
+        else {
+            this.fillSelectors('form', {
+                'input[name = targetmachine ]' : dellhost,
+                'input[name = user ]' : username,
+                'input[name = password ]' : password,
+                'input[name = ignorecertificate ]' : '1',
+            });
+        }
         this.click('#login_submit');
     });
 });
