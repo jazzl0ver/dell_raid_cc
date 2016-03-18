@@ -33,14 +33,14 @@ $ casperjs --ignore-ssl-errors=true --cookies-file=/tmp/dell_raid_cc_cookie.jar 
 
 Result:
 
-* If everything went well, you'll see something like:
+If everything went well, you'll see something like:
 ```
 Found: Virtual Disk 0 [state: Ready; layout: RAID-10; size: 1,862.00GB]
   CC for Virtual Disk 0 has been started
 Found: Virtual Disk 1 [state: Ready; layout: RAID-1; size: 931.00GB]
   CC for Virtual Disk 1 has been started
 ```
-* If the CC task is already runnnig, you'll see something like:
+If the CC task is already runnnig, you'll see something like:
 ```
 Found: Virtual Disk 0 [state: Resynching; layout: RAID-6; size: 5,026.50GB]
   CC for Virtual Disk 0 is still running, progress: 19% complete
