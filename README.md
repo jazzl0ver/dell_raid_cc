@@ -5,6 +5,8 @@ Supports multiple virtual drives created on a single RAID controller
 
 Does NOT support multi-controller configurations
 
+This is the only way to automate consistency checks for ESXi 5.5+ servers running on Dell hardware, since they don't have omconfig/omreport tools
+
 Requirements:
 - Dell server with iDRAC ;-)
 - A server with Dell OpenManage Server Administrator (OMSA) installed and running (http://www.dell.com/support/contents/us/en/19/article/Product-Support/Self-support-Knowledgebase/enterprise-resource-center/Enterprise-Tools/OMSA/)
