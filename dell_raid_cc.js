@@ -1,6 +1,6 @@
 /*!
  *
- *  Consistency Check task automation tool for Dell servers with iDRAC
+ *  Consistency Check Task Automation Tool for Dell Servers with iDRAC
  *
  *  Supports multiple virtual drives created on a single RAID controller
  *  Does NOT support multi-controller configurations
