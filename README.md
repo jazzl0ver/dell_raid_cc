@@ -5,7 +5,13 @@ Supports multiple virtual drives created on a single RAID controller
 
 Does NOT support multi-controller configurations
 
-This is the only way to automate consistency checks for ESXi 5.5+ servers running on Dell hardware, since they don't have omconfig/omreport tools
+_This is the only way to automate consistency checks for ESXi 5.5+ servers running on Dell hardware, since they don't have omconfig/omreport tools_
+
+UPDATE:
+It appears, the proper way is to use megacli tool, which works with all LSI RAID controllers. Instructions for installing it on:
+- ESXi: http://de.community.dell.com/techcenter/support-services/w/wiki/909.how-to-install-megacli-on-esxi-5-x/
+- RedHat/CentOS: https://www.dell.com/support/article/us/en/19/SLN292236
+Scheduling CC using megacli: https://ervikrant06.wordpress.com/2014/08/22/how-to-schedule-consistency-check-in-megaraid/
 
 Requirements:
 - Dell server with iDRAC ;-)
