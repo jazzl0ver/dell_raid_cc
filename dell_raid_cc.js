@@ -203,8 +203,15 @@ casper.then(function() {
                         }
                         else if (options[j].text == 'Cancel Check Consistency') {
                             select.value = options[j].value;
-                            result = 'CC for '+VDname+' is still running, progress: '
-                                +document.getElementById('table1_row_'+VD_idx+'.8').innerHTML;
+                            if (document.getElementById('table1_row'+VD_idx+'.8')) {
+                                result = 'CC for '+VDname+' is still running, progress: '
+                                    +document.getElementById('table1_row'+VD_idx+'.8').innerHTML;
+                            }
+                            else {
+                                result = 'CC for '+VDname+' is still running, progress: '
+                                    +document.getElementById('table1_row_'+VD_idx+'.8').innerHTML;
+                            }
+                            }
                             break;
                         }
                     }
